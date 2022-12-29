@@ -2,12 +2,20 @@ import axios from 'axios';
 
 let url = document.getElementById("url");
 
-function sendInfo(url, date) {
-    var date = new Date()
+function getDataFromURL(url) {
+    data = axios.get(url)
+
+    return data
+
+}
+
+function sendInfo(url) {
+    data = getDataFromURL(url)
 
     axios.post('localhost:3000/post', {
-        url: url
+        url: url,
+        data: data
     });
 }
 
-sendInfo()
+sendInfo(url)
